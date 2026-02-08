@@ -55,8 +55,7 @@ games/
 
 Manifest is the "plugin contract". React reads it, no hardcoding.
 
----
-
+----
 ## Roadmap (build order that won't ruin your life)
 
 ### Phase 0: Repo + hygiene (Day 1)
