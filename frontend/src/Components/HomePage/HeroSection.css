@@ -1,0 +1,49 @@
+.herosection{
+    color : silver;
+    margin: 100px 250px;
+    padding: 8px 32px;
+    margin-bottom: 0;
+    max-width: 35%;
+}
+
+.herosection h3{
+    display: inline;
+    font-size: 4rem;
+}
+
+.herosection p{
+    text-align: justify;
+    font-size: 1.2rem;
+}
+
+.connect-with-us {
+    display: flex;
+    padding: 16px;
+    justify-content: space-around;
+    
+
+}
+.connect-with-us button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8rem;
+    padding: 8px 16px;
+    border-radius: 16px ;
+}
+.Our-Services{
+    color: white;
+    margin: 100px 250px;
+    padding: 8px 32px;
+    margin-top: 30px;
+
+
+}
+
+.Our-Services div{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+    margin-top: 30px;
+}

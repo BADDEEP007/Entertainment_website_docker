@@ -1,0 +1,24 @@
+.Navbar{
+   color: white;
+   display: flex;
+   margin: 32px 8px;
+   padding: 1px 8px;
+   align-items: center;
+   justify-content:space-evenly;
+
+
+
+}
+.Logo{
+    margin: 8px ;
+    display: flex;
+    align-items: center;
+ 
+}
+
+.navbar-option{
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+
+}
