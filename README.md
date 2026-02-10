@@ -1,190 +1,375 @@
-# Browser-Based Game Hub
+# 🎮 GameHub - Browser-Based Game Platform
 
-## Project Overview
+![GameHub Hero](./frontend/docs//images/Screenshot%202026-02-11%20022826.png)
 
-You're building a **browser-based Game Hub**.
+> A modern WebAssembly-powered game launcher platform. Play games instantly in your browser - no downloads, no installations required.
 
-- **Frontend (React):** the launcher UI (library, "Play", settings).
-- **Backend (Express):** serves game catalog data + later user stuff (profiles, saves, stats).
-- **Games (WASM builds):** each game is a "module" with a `manifest.json` and a `build/` folder that the browser loads.
-- **Reverse proxy (Nginx/Caddy):** one domain, routes traffic cleanly:
-  - `/api/*` → backend
-  - `/` → frontend
-  - `/games/*` → game files (static)
-
-**Vice City is Game #1**, but the platform is made to add more games later without rewriting everything.
+[![React](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react)](https://reactjs.org/)
+[![Express](https://img.shields.io/badge/Express-Latest-000000?logo=express)](https://expressjs.com/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)](https://www.docker.com/)
+[![WebAssembly](https://img.shields.io/badge/WebAssembly-Powered-654FF0?logo=webassembly)](https://webassembly.org/)
 
 ---
 
-## What a non-dev should understand
+## 🚀 Quick Start
 
-Think of it like **a Netflix-style homepage**, but instead of movies, it launches **games that run directly in the browser**.
+```bash
+# Install dependencies
+npm install
 
-- The site shows the game list.
-- You click "Play".
-- The game loads like a web page (because WebAssembly lets browser run game-like code).
-- Later, you can add accounts, saved settings, and more games.
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+Visit `http://localhost:5173` to see the platform in action.
 
 ---
 
-## Core Components (Dev view)
+## 📋 Table of Contents
 
-### 1) React Frontend
-- Shows game library UI
-- Calls backend: `GET /api/games`
-- Opens the selected game's `entry` from manifest (URL)
+- [Overview](#-overview)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Games Library](#-games-library)
+- [Development Roadmap](#-development-roadmap)
+- [Architecture](#-architecture)
+- [Contributing](#-contributing)
 
-### 2) Express Backend
-- Provides APIs:
-  - `/api/games` (catalog)
-  - later `/api/users`, `/api/saves`, `/api/settings`
-- Can also serve static `/games` in early dev (simple)
+---
 
-### 3) Game Modules
+## 🎯 Overview
 
-Folder example:
+GameHub is a Netflix-style platform for browser-based games. Built with modern web technologies, it delivers near-native gaming performance through WebAssembly, all within your browser.
+
+### Why GameHub?
+
+- **Zero Installation** - Games load instantly in your browser
+- **WebAssembly Performance** - Near-native speed and efficiency
+- **Modular Architecture** - Easy to add new games via manifest files
+- **Containerized** - Docker-ready for consistent deployments
+- **Scalable** - Built to handle growth from day one
+
+---
+
+## ✨ Features
+
+### Current Features (Phase 1)
+
+- ✅ **Modern UI** - Minimal design with smooth animations
+- ✅ **Game Library** - Browse 6+ games with detailed info
+- ✅ **User Authentication** - Login/Signup with Google OAuth ready
+- ✅ **Responsive Design** - Works on desktop, tablet, and mobile
+- ✅ **Dark Theme** - Easy on the eyes with glassmorphism effects
+- ✅ **Animated Elements** - Floating particles, scanlines, 3D cubes
+
+### Coming Soon
+
+- 🔄 **Game Catalog API** - Backend serving game metadata
+- 🔄 **WebAssembly Games** - Actual playable games
+- 🔄 **User Profiles** - Save progress and settings
+- 🔄 **Cloud Saves** - Continue gaming across devices
+- 🔄 **Leaderboards** - Compete with other players
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React 19** - UI library with latest features
+- **React Router 7** - Client-side routing
+- **CSS3** - Custom animations and effects
+- **Vite** - Fast build tool and dev server
+
+### Backend (Planned)
+- **Express.js** - RESTful API server
+- **PostgreSQL** - User data and game metadata
+- **JWT** - Authentication tokens
+
+### Infrastructure
+- **Docker** - Containerization
+- **Nginx** - Reverse proxy and static file serving
+- **AWS EC2** - Production hosting (planned)
+- **S3/CloudFront** - Game asset delivery (optional)
+
+### Game Technology
+- **WebAssembly** - High-performance game execution
+- **Emscripten** - C/C++ to WASM compilation
+- **Manifest System** - Modular game loading
+
+---
+
+## 📁 Project Structure
+
+```
+frontend/
+├── public/
+│   ├── fonts/              # Custom fonts
+│   └── vite.svg
+├── src/
+│   ├── assets/             # Images and icons
+│   ├── Components/
+│   │   ├── About/          # Platform info section
+│   │   ├── FAQ/            # FAQ accordion
+│   │   ├── Footer/         # Site footer with social links
+│   │   ├── Games/          # Featured games showcase
+│   │   ├── HomePage/       # Hero section and navbar
+│   │   └── React-bits/     # Reusable UI components
+│   ├── Pages/
+│   │   ├── HomePage.jsx    # Landing page
+│   │   ├── GamesPage.jsx   # Full game library
+│   │   └── LoginPage.jsx   # Authentication
+│   ├── App.jsx             # Root component with routing
+│   └── main.jsx            # Entry point
+├── index.html
+├── package.json
+└── vite.config.js
+```
+
+---
+
+## 🎮 Games Library
+
+### Available Games
+
+| Game | Genre | Difficulty | Status |
+|------|-------|-----------|--------|
+| **GTA Vice City** | Action/Open World | Complex | Featured |
+| **DOOM (1993)** | FPS/Classic | Medium | Ready |
+| **Pac-Man** | Arcade/Classic | Easy | Ready |
+| **Tetris** | Puzzle | Easy | Ready |
+| **Snake** | Arcade/Casual | Easy | Ready |
+| **Space Invaders** | Shooter/Classic | Easy | Ready |
+
+### Game Module Structure
+
+Each game is a self-contained module:
+
 ```
 games/
-  vice-city/
-    manifest.json
-    build/  (wasm/js/data/assets)
-  doom/
-    manifest.json
-    build/
+└── vice-city/
+    ├── manifest.json       # Game metadata
+    └── build/
+        ├── game.wasm       # Compiled game
+        ├── game.js         # JS glue code
+        ├── game.data       # Game assets
+        └── assets/         # Additional resources
 ```
 
-Manifest is the "plugin contract". React reads it, no hardcoding.
-
-----
-## Roadmap (build order that won't ruin your life)
-
-### Phase 0: Repo + hygiene (Day 1)
-- GitHub repo
-- `.gitignore`, `.env.example`
-- Basic folder structure:
-  - `frontend/`, `backend/`, `games/`, `infra/` (later)
-
-**Deliverable:** repo boots, no chaos.
-
----
-
-### Phase 1: Platform skeleton (Week 1)
-- Backend: `GET /api/games` returns a list (start hardcoded)
-- Frontend: renders library from API
-- "Play" button opens the game entry URL
-
-**Deliverable:** launcher loads, game list appears.
+**Example manifest.json:**
+```json
+{
+  "id": "vice-city",
+  "name": "GTA Vice City",
+  "version": "1.0.0",
+  "entry": "/games/vice-city/build/index.html",
+  "description": "Welcome to the 1980s...",
+  "genre": ["Action", "Open World"],
+  "rating": "4.8",
+  "players": "Single Player"
+}
+```
 
 ---
 
-### Phase 2: Static game hosting (Week 1–2)
-- Serve `/games/*` from backend or from Nginx
-- Add `games/vice-city/manifest.json`
-- Put some placeholder build or a test WASM game first (even a tiny demo) to verify delivery pipeline
+## 🗺️ Development Roadmap
 
-**Deliverable:** game loads from your server, not from local file system.
+### ✅ Phase 1: Platform Skeleton (Current)
+- [x] React frontend with routing
+- [x] Game library UI
+- [x] User authentication pages
+- [x] Minimal design system
+- [x] Responsive layout
+- [ ] Backend API setup
+- [ ] Manifest-based game loading
 
----
+### 📦 Phase 2: Static Game Hosting
+- [ ] Serve `/games/*` from backend
+- [ ] Add game manifests
+- [ ] Test WASM game delivery
+- [ ] Browser loading pipeline
 
-### Phase 3: Docker dev environment (Week 2)
-- Dockerize frontend + backend
-- Compose for dev:
-  - hot reload for React
-  - nodemon for Express
-  - shared network
+### 🐳 Phase 3: Docker Development
+- [ ] Dockerize frontend + backend
+- [ ] Docker Compose setup
+- [ ] Hot reload configuration
+- [ ] Shared network
 
-**Deliverable:** `docker compose up` starts everything.
+### 🚀 Phase 4: Production Ready
+- [ ] Multi-stage Docker builds
+- [ ] Nginx reverse proxy
+- [ ] Environment variables
+- [ ] Health checks
+- [ ] Optimized images
 
----
-
-### Phase 4: Production containerization (Week 3)
-- Multi-stage builds (small images)
-- Nginx reverse proxy
-- No dev dependencies in final images
-- Proper env vars, health checks
-
-**Deliverable:** production-like run locally.
-
----
-
-### Phase 5: Expansion features (Week 4+)
-
-Pick one at a time:
-- User accounts (auth)
-- Save metadata storage (DB)
-- Game settings per user
-- Upload/mount assets privately (important for legality)
-- Logging/metrics
-- CI/CD deploy to EC2
-
-**Deliverable:** real "platform", not just a launcher page.
+### 🎯 Phase 5: Feature Expansion
+- [ ] User authentication (JWT)
+- [ ] Save metadata storage
+- [ ] Per-user settings
+- [ ] Logging & metrics
+- [ ] CI/CD pipeline
+- [ ] AWS EC2 deployment
+- [ ] S3/CloudFront integration
 
 ---
 
-## Tools you'll use (and why)
+## 🏗️ Architecture
 
-| Tool                             | Why                                     |
-| -------------------------------- | --------------------------------------- |
-| Git + GitHub                     | version control + collaboration + CI/CD |
-| Node + npm                       | React + Express runtime & deps          |
-| Docker                           | consistent environments, easy deploy    |
-| Docker Compose                   | run multiple services locally           |
-| Nginx (or Caddy)                 | reverse proxy + static serving + HTTPS  |
-| Postgres (later)                 | users/saves/settings data               |
-| GitHub Actions (later)           | build/test/deploy automatically         |
-| AWS EC2 (later)                  | host production version                 |
-| S3 + CloudFront (optional later) | best for heavy static game assets       |
+### System Overview
 
----
+```
+┌─────────────┐
+│   Browser   │
+└──────┬──────┘
+       │
+       ↓
+┌─────────────┐
+│    Nginx    │  ← Reverse Proxy
+│  (Port 80)  │
+└──────┬──────┘
+       │
+       ├─→ /          → React Frontend (Static)
+       ├─→ /api/*     → Express Backend (API)
+       └─→ /games/*   → Game Files (Static)
+```
 
-## Docker "Layer" explanation (what it means in your project)
+### Data Flow
 
-A Docker image is built in **layers**. Each instruction in Dockerfile is basically a new layer.
+1. **User visits site** → Nginx serves React app
+2. **React loads** → Fetches game catalog from `/api/games`
+3. **User clicks "Play"** → Loads game from manifest entry point
+4. **Game runs** → WebAssembly executes in browser
+5. **Progress saved** → API stores user data
 
-- Layers get cached.
-- If you change code too early in the Dockerfile, cache breaks and rebuilds become slow.
-- So you structure Dockerfiles to **cache dependencies** and rebuild only what changed.
+### Manifest-Based Loading
 
-### Your project will have 3 main images (production)
+Games are dynamically loaded without hardcoding:
 
-1. **frontend-build image (temporary stage):**
-   - installs deps
-   - builds React into static files
+```javascript
+// Frontend reads manifest
+const manifest = await fetch('/games/vice-city/manifest.json')
+const game = await manifest.json()
 
-2. **backend image (runtime):**
-   - installs only production deps
-   - runs `node server.js`
-
-3. **nginx image (final gateway):**
-   - serves React build
-   - serves `/games/*`
-   - proxies `/api/*` to backend
-
-In dev, you'll have 2 containers mostly:
-- React dev server container
-- Express dev server container
-- (and maybe a DB container later)
+// Launch game
+window.location.href = game.entry
+```
 
 ---
 
-## "Dev vs Prod" mental model
+## 🎨 Design System
 
-### Dev
-- Hot reload
-- Source code mounted into containers
-- Bigger images are okay
-- Debug-friendly
+### Color Palette
+- **Primary:** White (#ffffff) with varying opacity
+- **Background:** Dark gradients (#000000, #0a0a15, #1a1a2e)
+- **Borders:** rgba(255, 255, 255, 0.1-0.4)
+- **Accents:** Subtle white glows
 
-### Prod
-- Prebuilt static frontend
-- Minimal backend image (no nodemon, no build tools)
-- Nginx handles routing + caching
-- Small, secure images
+### Typography
+- **Headings:** Orbitron (futuristic, bold)
+- **Body:** Rajdhani (modern, readable)
+- **Monospace:** For code/technical content
+
+### Animations
+- **Scanlines:** Subtle moving lines for retro feel
+- **Particles:** Floating diamond shapes (◆◇◈)
+- **Cubes:** 3D rotating elements
+- **Hover:** Scale, glow, and transform effects
 
 ---
 
-## The actual plan in one line
+## 🔧 Development
 
-**Build a game launcher platform that reads game modules via manifests, serves WASM game builds as static content, and runs everything reproducibly using Docker for dev and production.**
+### Prerequisites
+- Node.js 18+ and npm
+- Git
+- Modern browser (Chrome, Firefox, Edge)
 
-That's your roadmap. Now go implement Phase 1 properly before you get distracted by "future expansion" fantasies like an RPG character hoarding potions forever.
+### Environment Setup
+
+```bash
+# Clone repository
+git clone <repo-url>
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+```
+
+### Available Scripts
+
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run preview  # Preview production build
+npm run lint     # Run ESLint
+```
+
+### Adding a New Game
+
+1. Create game folder: `games/your-game/`
+2. Add `manifest.json` with metadata
+3. Place WASM build in `build/` folder
+4. Game appears automatically in library
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Contribution Guidelines
+- Follow existing code style
+- Write meaningful commit messages
+- Test on multiple browsers
+- Update documentation as needed
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **React Team** - For the amazing framework
+- **WebAssembly Community** - For making browser gaming possible
+- **Emscripten** - For C/C++ to WASM compilation
+- **Docker** - For containerization made easy
+
+---
+
+## 📞 Contact & Support
+
+- **Issues:** [GitHub Issues](https://github.com/your-repo/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/your-repo/discussions)
+- **Email:** support@gamehub.dev
+
+---
+
+## 🌟 Star History
+
+If you find this project useful, please consider giving it a star! ⭐
+
+---
+
+<div align="center">
+
+**Built with ❤️ by the GameHub Team**
+
+[Website](https://gamehub.dev) • [Documentation](https://docs.gamehub.dev) • [Blog](https://blog.gamehub.dev)
+
+</div>
