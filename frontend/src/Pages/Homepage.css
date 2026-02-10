@@ -4,15 +4,61 @@
     background-repeat: no-repeat;
     background-image: url("../assets/background.svg");
     background-size: cover;
-    background-position:  center ;
+    background-position: center;
     position: relative;
-    bottom: 2rem;
-    overflow-x: hidden;
-    overflow-y: hidden;
-   
-    
-    }   
+    overflow: hidden;
+}
+
+.Background_images::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.Background_images > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Floating particles animation */
+.Background_images::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.02) 0px,
+        rgba(255, 255, 255, 0.02) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 1;
+    animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(10px);
+    }
+}
 
 .About_background{
-
+    width: 1632px;
+    height: 1023px;
+    background-image: url(../assets/back3.svg);
+    background-repeat: no-repeat;
+    margin-top: 5rem;
+    background-position: -50px;
 }

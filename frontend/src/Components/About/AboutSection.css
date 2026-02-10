@@ -1,0 +1,339 @@
+.AboutSection{
+    max-width: 1632px;
+    height: 980px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    background-image: url("../../assets/background.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    color: white;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.AboutSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.AboutSection > * {
+    position: relative;
+    z-index: 2;
+}
+
+
+
+ .About_us{
+    margin:8px;
+    font-size: 4.5rem;
+    font-family: 'Orbitron', custom2, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 20px rgba(255, 255, 255, 0.1);
+}
+
+
+.about_button{
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    margin: 8px 10px;
+    padding: 14px 24px;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Rajdhani', custom2, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.about_button:hover{
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.about_button.active {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+}
+
+.About_Dynamic_data{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    font-family: 'Rajdhani', custom2, sans-serif;
+    padding: 0 32px;
+}
+
+.About_main_text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #e0e0e0;
+    text-align: center;
+    font-weight: 500;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+.About_3_col{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    margin-top: 32px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 32px;
+}
+.Info_card_about{
+    display: flex;
+    flex-direction: column;
+    isolation: isolate;
+    position: relative;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+    border-radius: 1rem;
+    overflow: hidden;
+    font-family: 'Rajdhani', 'Gill Sans', sans-serif;
+    font-size: 16px;
+    --gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    --color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    animation: card-float 3s ease-in-out infinite;
+}
+
+@keyframes card-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.Info_card_about:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.Info_card_about:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.Info_card_about:hover {
+    transform: translateY(-15px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
+}
+
+.Info_card_about:before {
+  position: absolute;
+  content: "";
+  inset: 0.0625rem;
+  border-radius: 0.9375rem;
+  background: linear-gradient(135deg, #0a0a15 0%, #16213e 100%);
+  z-index: 2
+}
+
+.Info_card_about:after {
+  position: absolute;
+  content: "";
+  width: 0.3rem;
+  inset: 0.65rem auto 0.65rem 0.5rem;
+  border-radius: 0.125rem;
+  background: var(--gradient);
+  transition: transform 300ms ease;
+  z-index: 4;
+}
+
+.Info_card_about:hover:after {
+  transform: translateX(0.15rem)
+}
+
+.notititle {
+  color: var(--color);
+  padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+  font-weight: 700;
+  font-size: 1.3rem;
+  transition: transform 300ms ease;
+  z-index: 5;
+  font-family: 'Rajdhani', custom2, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.Info_card_about:hover .notititle {
+  transform: translateX(0.15rem)
+}
+
+.notibody {
+  color: #b8b8c0;
+  padding: 0 1.25rem;
+  padding-bottom: 1rem;
+  transition: transform 300ms ease;
+  z-index: 5;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.Info_card_about:hover .notibody {
+  transform: translateX(0.25rem)
+}
+
+.notiglow,
+.notiborderglow {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle closest-side at center, rgba(255, 255, 255, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.notiglow {
+  z-index: 3;
+}
+
+.notiborderglow {
+  z-index: 1;
+}
+
+.Info_card_about:hover .notiglow {
+  opacity: 0.08
+}
+
+.Info_card_about:hover .notiborderglow {
+  opacity: 0.1
+}
+
+.note {
+  color: var(--color);
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 0.9rem;
+  width: 75%;
+}
+
+.orb_back{
+    border:  solid black 1px;
+    position: relative;
+    
+}
+
+/* Gaming Particles Animation */
+.gaming-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.3);
+    opacity: 0.3;
+    animation: float-particle 15s infinite ease-in-out;
+}
+
+.particle-1 {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.particle-2 {
+    top: 20%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.particle-3 {
+    bottom: 15%;
+    left: 20%;
+    animation-delay: 4s;
+}
+
+.particle-4 {
+    top: 60%;
+    right: 25%;
+    animation-delay: 1s;
+}
+
+.particle-5 {
+    bottom: 30%;
+    right: 10%;
+    animation-delay: 3s;
+}
+
+.particle-6 {
+    top: 40%;
+    left: 15%;
+    animation-delay: 5s;
+}
+
+@keyframes float-particle {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translateY(-30px) rotate(90deg);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(-60px) rotate(180deg);
+        opacity: 0.3;
+    }
+    75% {
+        transform: translateY(-30px) rotate(270deg);
+        opacity: 0.6;
+    }
+}
+
+/* Scanline effect for retro gaming feel */
+.AboutSection::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.02) 0px,
+        rgba(255, 255, 255, 0.02) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 3;
+    animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(10px);
+    }
+}

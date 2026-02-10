@@ -1,5 +1,37 @@
+@font-face {
+  font-family: "custom1";
+  src:url(../public/fonts/1b0b3615811be75b-s.p.woff2) ;
+      font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  
+}
+@font-face {
+  font-family: "custom2";
+  src :url(../public/fonts/14d7ce3e41dcbb66-s.p.woff2);
+    font-weight: 100 900;  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "custom3";
+  src:url(../public/fonts/e4af272ccee01ff0-s.p.woff2) ;
+    font-weight: 100 900;  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "custom4";
+  src: url(../public/fonts/e8b276476c0ac6fa-s.p.woff2);
+    font-weight: 100 900;  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   overflow-x: hidden;
-  
+  font-family: custom1 , 'Courier New', Courier, monospace;
+  background-color: #000000;
 }
