@@ -1,6 +1,7 @@
 .Background_images{
-    width: 1632px;
-    height: 1023px;
+    width: 100%;
+    max-width: 1632px;
+    min-height: 100vh;
     background-repeat: no-repeat;
     background-image: url("../assets/background.svg");
     background-size: cover;
@@ -55,10 +56,19 @@
 }
 
 .About_background{
-    width: 1632px;
-    height: 1023px;
+    width: 100%;
+    max-width: 1632px;
+    min-height: 1023px;
     background-image: url(../assets/back3.svg);
     background-repeat: no-repeat;
     margin-top: 5rem;
-    background-position: -50px;
+    background-position: center;
+    background-size: cover;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .Background_images {
+        min-height: auto;
+    }
 }

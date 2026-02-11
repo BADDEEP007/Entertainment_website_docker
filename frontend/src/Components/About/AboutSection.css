@@ -1,6 +1,7 @@
 .AboutSection{
     max-width: 1632px;
-    height: 980px;
+    width: 100%;
+    min-height: 980px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,6 +14,7 @@
     color: white;
     z-index: 10;
     overflow: hidden;
+    padding: 80px 20px;
 }
 
 .AboutSection::before {
@@ -42,6 +44,7 @@
     color: #ffffff;
     letter-spacing: 3px;
     text-shadow: 0 2px 20px rgba(255, 255, 255, 0.1);
+    text-align: center;
 }
 
 
@@ -79,7 +82,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 70%;
+    width: 90%;
+    max-width: 1200px;
     font-family: 'Rajdhani', custom2, sans-serif;
     padding: 0 32px;
 }
@@ -92,6 +96,7 @@
     font-weight: 500;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
+
 .About_3_col{
     display: flex;
     flex-direction: row;
@@ -100,6 +105,8 @@
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .Info_card_about{
     display: flex;
@@ -116,6 +123,9 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
     animation: card-float 3s ease-in-out infinite;
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
 }
 
 @keyframes card-float {
@@ -335,5 +345,91 @@
     }
     100% {
         transform: translateY(10px);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .AboutSection {
+        padding: 60px 20px;
+        min-height: auto;
+    }
+
+    .About_us {
+        font-size: 3.5rem;
+    }
+
+    .About_Dynamic_data {
+        width: 95%;
+        padding: 0 20px;
+    }
+
+    .About_3_col {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .AboutSection {
+        padding: 50px 16px;
+    }
+
+    .About_us {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+    }
+
+    .about_button {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        margin: 6px 8px;
+    }
+
+    .About_main_text {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    .About_3_col {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .Info_card_about {
+        max-width: 100%;
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .AboutSection {
+        padding: 40px 12px;
+    }
+
+    .About_us {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+
+    .about_button {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+        margin: 4px 6px;
+    }
+
+    .About_main_text {
+        font-size: 1rem;
+    }
+
+    .About_Dynamic_data {
+        padding: 0 12px;
+    }
+
+    .notititle {
+        font-size: 1.1rem;
+    }
+
+    .notibody {
+        font-size: 0.9rem;
     }
 }

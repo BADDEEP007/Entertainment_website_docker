@@ -96,10 +96,69 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .nav-cta-button:hover {
     background: rgba(255, 255, 255, 0.15);
     border-color: rgba(255, 255, 255, 0.4);
     transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .Navbar {
+        margin: 16px 8px;
+        padding: 12px 24px;
+    }
+
+    .navbar-option {
+        gap: 2rem;
+    }
+
+    .Logo h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .Navbar {
+        padding: 10px 16px;
+        margin: 12px 8px;
+        border-radius: 30px;
+    }
+
+    .Logo h3 {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+
+    .logo-icon {
+        font-size: 1.2rem;
+    }
+
+    .main-navigation {
+        display: none;
+    }
+
+    .nav-cta-button {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .Navbar {
+        padding: 8px 12px;
+    }
+
+    .Logo h3 {
+        font-size: 1rem;
+    }
+
+    .nav-cta-button {
+        padding: 6px 16px;
+        font-size: 0.8rem;
+    }
 }

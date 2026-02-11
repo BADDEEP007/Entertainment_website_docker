@@ -448,6 +448,7 @@
         grid-template-columns: 1fr;
         padding: 80px 60px;
         gap: 60px;
+        min-height: auto;
     }
 
     .hero-title {
@@ -462,28 +463,108 @@
 @media (max-width: 768px) {
     .herosection {
         padding: 60px 32px;
+        gap: 40px;
     }
 
     .hero-title {
         font-size: 2.5rem;
     }
 
+    .hero-description {
+        font-size: 1rem;
+    }
+
     .hero-stats {
         gap: 20px;
+        flex-wrap: wrap;
     }
 
     .stat-number {
         font-size: 2rem;
     }
 
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
     .hero-actions {
         flex-direction: column;
         width: 100%;
+        gap: 12px;
     }
 
     .btn-primary,
     .btn-secondary {
         width: 100%;
         justify-content: center;
+    }
+
+    .hero-tech-stack {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .tech-items {
+        width: 100%;
+    }
+
+    .hero-visual {
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .herosection {
+        padding: 40px 20px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-badge {
+        padding: 6px 16px;
+    }
+
+    .badge-text {
+        font-size: 0.8rem;
+    }
+
+    .hero-stats {
+        gap: 16px;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .stat-divider {
+        height: 30px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 14px 24px;
+        font-size: 1rem;
+    }
+
+    .hero-visual {
+        height: 300px;
+    }
+
+    .floating-cube {
+        width: 60px;
+        height: 60px;
+    }
+
+    .cube-2 {
+        width: 50px;
+        height: 50px;
+    }
+
+    .cube-3 {
+        width: 40px;
+        height: 40px;
     }
 }
