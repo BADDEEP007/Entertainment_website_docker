@@ -1,31 +1,32 @@
-# 🎮 GameHub - Browser-Based Game Platform hello
+# 🎮 GameHub - Browser-Based Game Platform
 
 ![GameHub Hero](./frontend/docs//images/Screenshot%202026-02-11%20022826.png)
 
 > A modern WebAssembly-powered game launcher platform. Play games instantly in your browser - no downloads, no installations required.
 
 [![React](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react)](https://reactjs.org/)
-[![Express](https://img.shields.io/badge/Express-Latest-000000?logo=express)](https://expressjs.com/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Latest-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)](https://www.docker.com/)
 [![WebAssembly](https://img.shields.io/badge/WebAssembly-Powered-654FF0?logo=webassembly)](https://webassembly.org/)
 
 ---
 
-## 🚀 Quick Start by Shailendra Lodhi 
+## 🚀 Quick Start 
 
 
 ```bash
-# Install dependencies
+# Frontend setup
+cd frontend
 npm install
-
-# Start development server
 npm run dev
 
-# Build for production
-npm run build
+# Backend setup (separate terminal)
+cd backend
+pip install -r requirements.txt
+python server.py
 ```
 
-Visit `http://localhost:5173` to see the platform in action.
+Visit `http://localhost:5173` for frontend and `http://localhost:8000` for backend API.
 
 ---
 
@@ -82,22 +83,25 @@ GameHub is a Netflix-style platform for browser-based games. Built with modern w
 ### Frontend
 - **React 19** - UI library with latest features
 - **React Router 7** - Client-side routing
-- **CSS3** - Custom animations and effects
-- **Vite** - Fast build tool and dev server
+- **CSS3** - Custom animations and glassmorphism effects
+- **Vite 5** - Fast build tool and dev server
 
-### Backend (Planned)
-- **Express.js** - RESTful API server
-- **PostgreSQL** - User data and game metadata
-- **JWT** - Authentication tokens
+### Backend
+- **FastAPI** - Modern Python web framework
+- **Uvicorn** - ASGI server
+- **Brotli** - Compression for game assets
+- **HTTPX** - Async HTTP client
+- **Aiofiles** - Async file operations
 
 ### Infrastructure
 - **Docker** - Containerization
-- **Nginx** - Reverse proxy and static file serving
+- **Nginx** - Reverse proxy and static file serving (planned)
 - **AWS EC2** - Production hosting (planned)
 - **S3/CloudFront** - Game asset delivery (optional)
 
 ### Game Technology
 - **WebAssembly** - High-performance game execution
+- **js-dos** - DOS games in browser
 - **Emscripten** - C/C++ to WASM compilation
 - **Manifest System** - Modular game loading
 
@@ -106,28 +110,62 @@ GameHub is a Netflix-style platform for browser-based games. Built with modern w
 ## 📁 Project Structure
 
 ```
-frontend/
-├── public/
-│   ├── fonts/              # Custom fonts
-│   └── vite.svg
-├── src/
-│   ├── assets/             # Images and icons
-│   ├── Components/
-│   │   ├── About/          # Platform info section
-│   │   ├── FAQ/            # FAQ accordion
-│   │   ├── Footer/         # Site footer with social links
-│   │   ├── Games/          # Featured games showcase
-│   │   ├── HomePage/       # Hero section and navbar
-│   │   └── React-bits/     # Reusable UI components
-│   ├── Pages/
-│   │   ├── HomePage.jsx    # Landing page
-│   │   ├── GamesPage.jsx   # Full game library
-│   │   └── LoginPage.jsx   # Authentication
-│   ├── App.jsx             # Root component with routing
-│   └── main.jsx            # Entry point
-├── index.html
-├── package.json
-└── vite.config.js
+├── frontend/                    # React application
+│   ├── public/
+│   │   ├── fonts/              # Custom fonts (Orbitron, Rajdhani)
+│   │   ├── sounds/             # Audio assets
+│   │   └── vite.svg
+│   ├── src/
+│   │   ├── assets/             # Images and icons
+│   │   ├── Components/
+│   │   │   ├── About/          # Platform info section
+│   │   │   ├── FAQ/            # FAQ accordion
+│   │   │   ├── Footer/         # Site footer with social links
+│   │   │   ├── Games/          # Featured games showcase
+│   │   │   ├── HomePage/       # Hero section and navbar
+│   │   │   └── React-bits/     # Reusable UI components
+│   │   ├── Pages/
+│   │   │   ├── HomePage.jsx    # Landing page
+│   │   │   ├── GamesPage.jsx   # Full game library
+│   │   │   └── LoginPage.jsx   # Authentication
+│   │   ├── styles/             # Component-specific styles
+│   │   ├── utils/              # Helper functions
+│   │   ├── App.jsx             # Root component with routing
+│   │   └── main.jsx            # Entry point
+│   ├── docs/                   # Game documentation
+│   │   ├── images/             # Screenshots and assets
+│   │   ├── GAMES_OVERVIEW.md   # Common game concepts
+│   │   ├── PACMAN_DOCUMENTATION.md
+│   │   ├── SNAKE_DOCUMENTATION.md
+│   │   └── TETRIS_DOCUMENTATION.md
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
+│
+├── backend/                     # FastAPI server
+│   ├── additions/              # Additional modules
+│   │   ├── auth.py            # Authentication logic
+│   │   ├── cache.py           # Caching utilities
+│   │   ├── packed.py          # Game packing
+│   │   └── saves.py           # Save game management
+│   ├── backend_server/         # Server binaries
+│   ├── dist/                   # Built game files
+│   │   ├── modules/           # Game modules
+│   │   ├── game.js            # Game loader
+│   │   ├── index.html         # Game player
+│   │   └── *.js               # js-dos SDK files
+│   ├── saves/                  # User save files
+│   ├── utils/                  # Utility scripts
+│   │   ├── downloader_brotli.py  # Asset downloader
+│   │   └── packer_brotli.py      # Asset packer
+│   ├── server.py              # Main FastAPI server
+│   ├── requirements.txt       # Python dependencies
+│   └── revcdos.bin            # DOS game binary
+│
+├── .gitignore
+├── .nvmrc                      # Node version
+├── README.md                   # This file
+└── yarn.lock
 ```
 
 ---
@@ -140,64 +178,71 @@ frontend/
 |------|-------|-----------|--------|
 | **GTA Vice City** | Action/Open World | Complex | Featured |
 | **DOOM (1993)** | FPS/Classic | Medium | Ready |
-| **Pac-Man** | Arcade/Classic | Easy | Ready |
-| **Tetris** | Puzzle | Easy | Ready |
-| **Snake** | Arcade/Casual | Easy | Ready |
+| **Pac-Man** | Arcade/Classic | Easy | Playable |
+| **Tetris** | Puzzle | Easy | Playable |
+| **Snake** | Arcade/Casual | Easy | Playable |
 | **Space Invaders** | Shooter/Classic | Easy | Ready |
+
+### Built-in Browser Games
+
+The platform includes three fully playable browser games built with React and Canvas:
+
+- **Pac-Man** - Classic maze chase with ghost AI
+- **Tetris** - Block-stacking puzzle with rotation mechanics
+- **Snake** - Growing snake with collision detection
+
+Each game has comprehensive documentation in `frontend/docs/` explaining the implementation, algorithms, and game mechanics.
 
 ### Game Module Structure
 
-Each game is a self-contained module:
+Each game is a self-contained module with metadata:
 
 ```
-games/
-└── vice-city/
-    ├── manifest.json       # Game metadata
-    └── build/
-        ├── game.wasm       # Compiled game
-        ├── game.js         # JS glue code
-        ├── game.data       # Game assets
-        └── assets/         # Additional resources
+backend/dist/
+├── modules/               # Game data files
+├── game.js               # Game engine
+├── index.html            # Game player interface
+├── jsdos-cloud-sdk.js    # js-dos SDK
+└── cover.jpg             # Game cover art
 ```
 
-**Example manifest.json:**
-```json
-{
-  "id": "vice-city",
-  "name": "GTA Vice City",
-  "version": "1.0.0",
-  "entry": "/games/vice-city/build/index.html",
-  "description": "Welcome to the 1980s...",
-  "genre": ["Action", "Open World"],
-  "rating": "4.8",
-  "players": "Single Player"
-}
+**Backend API Endpoints:**
+```
+GET  /api/games           # List all games
+GET  /api/game/{id}       # Get specific game
+POST /api/save            # Save game state
+GET  /api/load/{id}       # Load game state
 ```
 
 ---
 
 ## 🗺️ Development Roadmap
 
-### ✅ Phase 1: Platform Skeleton (Current)
+### ✅ Phase 1: Platform Skeleton (Completed)
 - [x] React frontend with routing
-- [x] Game library UI
+- [x] Game library UI with 6+ games
 - [x] User authentication pages
-- [x] Minimal design system
+- [x] Minimal design system with glassmorphism
 - [x] Responsive layout
-- [ ] Backend API setup
-- [ ] Manifest-based game loading
+- [x] FastAPI backend server
+- [x] Game save/load system
+- [x] js-dos integration for DOS games
+- [x] Three playable browser games (Pac-Man, Tetris, Snake)
 
-### 📦 Phase 2: Static Game Hosting
-- [ ] Serve `/games/*` from backend
-- [ ] Add game manifests
-- [ ] Test WASM game delivery
-- [ ] Browser loading pipeline
+### 📦 Phase 2: Enhanced Features (In Progress)
+- [ ] User authentication with JWT
+- [ ] Database integration (PostgreSQL)
+- [ ] Cloud save synchronization
+- [ ] Leaderboards and achievements
+- [ ] Game recommendations
+- [ ] Social features (friends, chat)
 
 ### 🐳 Phase 3: Docker Development
 - [ ] Dockerize frontend + backend
 - [ ] Docker Compose setup
 - [ ] Hot reload configuration
 - [ ] Shared network
+- [ ] Volume management for saves
 
 ### 🚀 Phase 4: Production Ready
 - [ ] Multi-stage Docker builds
@@ -205,15 +250,15 @@ games/
 - [ ] Environment variables
 - [ ] Health checks
 - [ ] Optimized images
+- [ ] SSL/TLS certificates
 
-### 🎯 Phase 5: Feature Expansion
-- [ ] User authentication (JWT)
-- [ ] Save metadata storage
-- [ ] Per-user settings
-- [ ] Logging & metrics
-- [ ] CI/CD pipeline
+### 🎯 Phase 5: Scale & Deploy
+- [ ] CI/CD pipeline (GitHub Actions)
 - [ ] AWS EC2 deployment
-- [ ] S3/CloudFront integration
+- [ ] S3/CloudFront for assets
+- [ ] Load balancing
+- [ ] Monitoring & logging
+- [ ] CDN integration
 
 ---
 
@@ -227,35 +272,47 @@ games/
 └──────┬──────┘
        │
        ↓
-┌─────────────┐
-│    Nginx    │  ← Reverse Proxy
-│  (Port 80)  │
-└──────┬──────┘
+┌─────────────────────────────┐
+│   Frontend (React + Vite)   │
+│      Port 5173              │
+└──────┬──────────────────────┘
        │
-       ├─→ /          → React Frontend (Static)
-       ├─→ /api/*     → Express Backend (API)
-       └─→ /games/*   → Game Files (Static)
+       ↓
+┌─────────────────────────────┐
+│   Backend (FastAPI)         │
+│      Port 8000              │
+└──────┬──────────────────────┘
+       │
+       ├─→ /api/games     → Game catalog
+       ├─→ /api/save      → Save game state
+       ├─→ /api/load      → Load game state
+       └─→ /dist/*        → Static game files
 ```
 
 ### Data Flow
 
-1. **User visits site** → Nginx serves React app
-2. **React loads** → Fetches game catalog from `/api/games`
-3. **User clicks "Play"** → Loads game from manifest entry point
-4. **Game runs** → WebAssembly executes in browser
-5. **Progress saved** → API stores user data
+1. **User visits site** → Vite serves React app
+2. **React loads** → Fetches game catalog from FastAPI
+3. **User clicks "Play"** → Loads game via js-dos or Canvas
+4. **Game runs** → WebAssembly/Canvas executes in browser
+5. **Progress saved** → FastAPI stores save files
 
-### Manifest-Based Loading
+### Backend Architecture
 
-Games are dynamically loaded without hardcoding:
-
-```javascript
-// Frontend reads manifest
-const manifest = await fetch('/games/vice-city/manifest.json')
-const game = await manifest.json()
-
-// Launch game
-window.location.href = game.entry
+```python
+# FastAPI server structure
+server.py
+├── CORS middleware
+├── Static file serving (/dist)
+├── API routes
+│   ├── GET  /api/games
+│   ├── POST /api/save
+│   └── GET  /api/load/{id}
+└── Game management
+    ├── additions/auth.py
+    ├── additions/cache.py
+    ├── additions/saves.py
+    └── utils/packer_brotli.py
 ```
 
 ---
@@ -285,25 +342,31 @@ window.location.href = game.entry
 
 ### Prerequisites
 - Node.js 18+ and npm
+- Python 3.8+
 - Git
 - Modern browser (Chrome, Firefox, Edge)
 
 ### Environment Setup
 
+**Frontend:**
 ```bash
-# Clone repository
-git clone <repo-url>
 cd frontend
-
-# Install dependencies
 npm install
-
-# Start dev server
 npm run dev
+# Runs on http://localhost:5173
+```
+
+**Backend:**
+```bash
+cd backend
+pip install -r requirements.txt
+python server.py
+# Runs on http://localhost:8000
 ```
 
 ### Available Scripts
 
+**Frontend:**
 ```bash
 npm run dev      # Start development server
 npm run build    # Build for production
@@ -311,12 +374,33 @@ npm run preview  # Preview production build
 npm run lint     # Run ESLint
 ```
 
+**Backend:**
+```bash
+python server.py              # Start FastAPI server
+uvicorn server:app --reload   # Start with auto-reload
+```
+
+### Project Documentation
+
+Comprehensive game documentation available in `frontend/docs/`:
+
+- **GAMES_OVERVIEW.md** - Common concepts, React hooks, Canvas API, game loops
+- **PACMAN_DOCUMENTATION.md** - Ghost AI, collision detection, maze generation
+- **TETRIS_DOCUMENTATION.md** - Piece rotation, line clearing, scoring system
+- **SNAKE_DOCUMENTATION.md** - Growth mechanics, collision handling, food spawning
+
 ### Adding a New Game
 
-1. Create game folder: `games/your-game/`
-2. Add `manifest.json` with metadata
-3. Place WASM build in `build/` folder
-4. Game appears automatically in library
+**For DOS/WASM games:**
+1. Place game files in `backend/dist/modules/`
+2. Update game catalog in backend
+3. Configure js-dos loader
+
+**For Canvas games:**
+1. Create component in `frontend/src/Components/`
+2. Implement game loop with Canvas
+3. Add routing in `App.jsx`
+4. Document in `frontend/docs/`
 
 ---
 
@@ -347,9 +431,12 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🙏 Acknowledgments
 
 - **React Team** - For the amazing framework
+- **FastAPI** - For the modern Python web framework
+- **js-dos** - For DOS games in browser
 - **WebAssembly Community** - For making browser gaming possible
 - **Emscripten** - For C/C++ to WASM compilation
 - **Docker** - For containerization made easy
+- **Vite** - For lightning-fast development experience
 
 ---
 
