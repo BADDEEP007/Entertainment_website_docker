@@ -1,4 +1,4 @@
-# 🎮 GameHub - Browser-Based Game Platform
+# 🎮 GameHub - Browser-Based Game Platform hello
 
 ![GameHub Hero](./frontend/docs//images/Screenshot%202026-02-11%20022826.png)
 
@@ -374,3 +374,4 @@ If you find this project useful, please consider giving it a star! ⭐
 [Website](https://gamehub.dev) • [Documentation](https://docs.gamehub.dev) • [Blog](https://blog.gamehub.dev)
 
 </div>
+
