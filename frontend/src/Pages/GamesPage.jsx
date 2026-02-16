@@ -2,8 +2,10 @@ import { Navbar } from "../Components/HomePage/NavBar"
 import { FAQ } from "../Components/FAQ/FAQ"
 import { Footer } from "../Components/Footer/Footer"
 import './GamesPage.css'
-
+import SplashCursor from "../Components/React-bits/splash_cur"
+import { useNavigate } from "react-router-dom"
 export const GamesPage = () => {
+    const navigate = useNavigate();
     const allGames = [
         {
             id: 1,
@@ -34,6 +36,7 @@ export const GamesPage = () => {
             image: "src/assets/images/PAC-MECH by Calum Alexander Watt.jpg",
             rating: "4.7",
             players: "Single Player"
+            
         },
         {
             id: 4,
@@ -69,6 +72,8 @@ export const GamesPage = () => {
 
     return (
         <>
+                 <SplashCursor/>
+
             <div className="games-page-header">
                 <Navbar />
                 <div className="games-hero">
@@ -84,7 +89,9 @@ export const GamesPage = () => {
                             <div className="game-card-image-container">
                                 <img src={game.image} alt={game.title} className="game-card-image" />
                                 <div className="game-card-overlay">
-                                    <button className="game-play-btn">▶ PLAY</button>
+                                    <button className="game-play-btn" onClick={() => {
+                                        console.log("clicked:", game.id);
+                                        navigate(`/play/${game.id}`)}}>▶ PLAY</button>
                                 </div>
                                 <div className="game-rating-badge">
                                     <span className="rating-star">★</span>
@@ -107,10 +114,11 @@ export const GamesPage = () => {
                                 </div>
                             </div>
                         </div>
+                   
                     ))}
                 </div>
             </section>
-
+            
             <FAQ />
             <Footer />
         </>

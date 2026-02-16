@@ -4,14 +4,16 @@ import { HomePage } from './Pages/HomePage.jsx'
 import { GamesPage } from './Pages/GamesPage.jsx'
 import { LoginPage } from './Pages/LoginPage.jsx'
 import '../src/App.css'
+import GamePlay from './Pages/GamePlay.jsx'
 
 function App() {
   return (
     <Router>
-      <SplashCursor/>
+     
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/games" element={<GamesPage />} />
+        <Route path = "/play/:gameid" element = {<GamePlay/>}/>
         <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Router>
