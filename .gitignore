@@ -8,8 +8,18 @@ yarn-error.log*
 .env.*
 
 Games/
+__pycache__/
+*.pyc
+
+backend/revcdos.bin
+
 dist/
 build/
-
+venv/
 .DS_Store
 .vscode/
+.env/
+.env*/
+
+
+

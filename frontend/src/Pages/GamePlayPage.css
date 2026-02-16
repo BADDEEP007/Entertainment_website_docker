@@ -1,0 +1,444 @@
+.game-play-page {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #000000 0%, #0a0a15 50%, #000000 100%);
+    position: relative;
+    overflow-x: hidden;
+    padding: 20px;
+}
+
+/* Arcade scanlines effect */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 136, 0.03) 0px,
+        rgba(0, 255, 136, 0.03) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+    z-index: 10;
+    animation: scanline-move 8s linear infinite;
+}
+
+@keyframes scanline-move {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(12px);
+    }
+}
+
+/* CRT screen effect */
+.crt-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    pointer-events: none;
+    z-index: 9;
+}
+
+/* Floating particles */
+.arcade-particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.arcade-particles .particle {
+    position: absolute;
+    font-size: 2rem;
+    color: rgba(0, 255, 136, 0.3);
+    opacity: 0.3;
+    animation: float-particle 15s infinite ease-in-out;
+}
+
+.arcade-particles .particle-1 {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.arcade-particles .particle-2 {
+    top: 20%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.arcade-particles .particle-3 {
+    bottom: 15%;
+    left: 20%;
+    animation-delay: 4s;
+}
+
+.arcade-particles .particle-4 {
+    top: 60%;
+    right: 25%;
+    animation-delay: 1s;
+}
+
+.arcade-particles .particle-5 {
+    bottom: 30%;
+    right: 10%;
+    animation-delay: 3s;
+}
+
+.arcade-particles .particle-6 {
+    top: 40%;
+    left: 15%;
+    animation-delay: 5s;
+}
+
+@keyframes float-particle {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translateY(-30px) rotate(90deg);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(-60px) rotate(180deg);
+        opacity: 0.3;
+    }
+    75% {
+        transform: translateY(-30px) rotate(270deg);
+        opacity: 0.6;
+    }
+}
+
+/* Header */
+.arcade-header {
+    max-width: 1400px;
+    margin: 0 auto 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 20;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateX(-5px);
+}
+
+.game-title-container {
+    text-align: center;
+    flex: 1;
+}
+
+.arcade-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 16px;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 50px;
+    margin-bottom: 12px;
+}
+
+.badge-dot {
+    width: 8px;
+    height: 8px;
+    background: #00ff88;
+    border-radius: 50%;
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 5px #00ff88;
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+        box-shadow: 0 0 15px #00ff88;
+    }
+}
+
+.badge-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #00ff88;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.arcade-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #00ff88;
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+.arcade-subtitle {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.arcade-controls-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    font-family: 'Rajdhani', sans-serif;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.controls-icon {
+    font-size: 1.5rem;
+}
+
+/* Game Container */
+.game-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 20;
+}
+
+.arcade-frame {
+    position: relative;
+    padding: 40px;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+    border: 3px solid rgba(0, 255, 136, 0.3);
+    border-radius: 20px;
+    box-shadow: 
+        0 0 30px rgba(0, 255, 136, 0.2),
+        inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.frame-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00ff88;
+}
+
+.frame-corner-tl {
+    top: 10px;
+    left: 10px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.frame-corner-tr {
+    top: 10px;
+    right: 10px;
+    border-left: none;
+    border-bottom: none;
+}
+
+.frame-corner-bl {
+    bottom: 10px;
+    left: 10px;
+    border-right: none;
+    border-top: none;
+}
+
+.frame-corner-br {
+    bottom: 10px;
+    right: 10px;
+    border-left: none;
+    border-top: none;
+}
+
+.game-screen {
+    background: #000000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+/* Coming Soon */
+.coming-soon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+}
+
+/* Footer */
+.arcade-footer {
+    max-width: 1400px;
+    margin: 40px auto 0;
+    position: relative;
+    z-index: 20;
+}
+
+.arcade-info {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.info-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.info-box:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(0, 255, 136, 0.3);
+    transform: translateY(-2px);
+}
+
+.info-icon {
+    font-size: 1.5rem;
+}
+
+/* Game Not Found */
+.game-not-found {
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+    z-index: 20;
+}
+
+.game-not-found p {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 32px;
+}
+
+.arcade-button {
+    padding: 16px 48px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #00ff88, #00ccff);
+    color: #000000;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.arcade-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .arcade-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .arcade-title {
+        font-size: 2.5rem;
+    }
+
+    .arcade-frame {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-play-page {
+        padding: 12px;
+    }
+
+    .arcade-title {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+
+    .arcade-subtitle {
+        font-size: 1rem;
+    }
+
+    .arcade-frame {
+        padding: 20px;
+    }
+
+    .arcade-info {
+        gap: 16px;
+    }
+
+    .info-box {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .arcade-title {
+        font-size: 1.5rem;
+    }
+
+    .arcade-frame {
+        padding: 15px;
+    }
+
+    .back-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}

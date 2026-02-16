@@ -28,7 +28,8 @@ export const FeaturedGames = () => {
                         <div className="game-image-container">
                             <img src={game.image} alt={game.title} className='game-image' />
                             <div className="game-overlay">
-                                <button className='play-button'>▶ PLAY NOW</button>
+                                <button className='play-button'
+                                onClick={()=>{window.open("http://localhost:3000","_blank")}}>▶ PLAY NOW</button>
                             </div>
                         </div>
                         
