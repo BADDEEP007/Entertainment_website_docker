@@ -11,7 +11,7 @@
 
 ---
 
-## 🚀 Quick Start by Shailendra Lodhi 
+## 🚀 Quick Start by Shailendra Lodhi  via mr_dev
 
 
 ```bash
