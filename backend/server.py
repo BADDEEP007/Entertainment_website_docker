@@ -239,9 +239,8 @@ async def setup_unpacked(source: str) -> tuple:
             return None, None
     
     # Determine vcsky and vcbr paths
-    vcsky_path = None
-    vcbr_path = None
-    
+    vcsky_path = "unpacked/d387c6f45d823194bc47671214496367/vcsky/"
+    vcbr_path = "unpacked/d387c6f45d823194bc47671214496367/vcbr"    
     # Check for vcsky folder
     vcsky_candidate = os.path.join(unpacked_dir, "vcsky")
     if os.path.isdir(vcsky_candidate):
@@ -355,8 +354,9 @@ async def read_index():
             content = f.read()
         
         # Inject custom_saves status
-        custom_saves_val = "1" if args.custom_saves else "0"
+        custom_saves_val = "1" #if args.custom_saves else "0"
         content = content.replace(
+
             'new URLSearchParams(window.location.search).get("custom_saves") === "1"',
             f'"{custom_saves_val}" === "1"'
         )
