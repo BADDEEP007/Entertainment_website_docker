@@ -89,21 +89,15 @@ GameHub is a Netflix-style platform for browser-based games. Built with modern w
 ### Backend
 - **FastAPI** - Modern Python web framework
 - **Uvicorn** - ASGI server
-- **Brotli** - Compression for game assets
-- **HTTPX** - Async HTTP client
-- **Aiofiles** - Async file operations
+
+
 
 ### Infrastructure
 - **Docker** - Containerization
-- **Nginx** - Reverse proxy and static file serving (planned)
 - **AWS EC2** - Production hosting (planned)
-- **S3/CloudFront** - Game asset delivery (optional)
 
-### Game Technology
-- **WebAssembly** - High-performance game execution
-- **js-dos** - DOS games in browser
-- **Emscripten** - C/C++ to WASM compilation
-- **Manifest System** - Modular game loading
+
+
 
 ---
 
@@ -144,7 +138,6 @@ GameHub is a Netflix-style platform for browser-based games. Built with modern w
 │
 ├── backend/                     # FastAPI server
 │   ├── additions/              # Additional modules
-│   │   ├── auth.py            # Authentication logic
 │   │   ├── cache.py           # Caching utilities
 │   │   ├── packed.py          # Game packing
 │   │   └── saves.py           # Save game management
@@ -155,9 +148,6 @@ GameHub is a Netflix-style platform for browser-based games. Built with modern w
 │   │   ├── index.html         # Game player
 │   │   └── *.js               # js-dos SDK files
 │   ├── saves/                  # User save files
-│   ├── utils/                  # Utility scripts
-│   │   ├── downloader_brotli.py  # Asset downloader
-│   │   └── packer_brotli.py      # Asset packer
 │   ├── server.py              # Main FastAPI server
 │   ├── requirements.txt       # Python dependencies
 │   └── revcdos.bin            # DOS game binary
@@ -177,11 +167,9 @@ GameHub is a Netflix-style platform for browser-based games. Built with modern w
 | Game | Genre | Difficulty | Status |
 |------|-------|-----------|--------|
 | **GTA Vice City** | Action/Open World | Complex | Featured |
-| **DOOM (1993)** | FPS/Classic | Medium | Ready |
 | **Pac-Man** | Arcade/Classic | Easy | Playable |
 | **Tetris** | Puzzle | Easy | Playable |
 | **Snake** | Arcade/Casual | Easy | Playable |
-| **Space Invaders** | Shooter/Classic | Easy | Ready |
 
 ### Built-in Browser Games
 
@@ -461,4 +449,5 @@ If you find this project useful, please consider giving it a star! ⭐
 [Website](https://gamehub.dev) • [Documentation](https://docs.gamehub.dev) • [Blog](https://blog.gamehub.dev)
 
 </div>
+
 
