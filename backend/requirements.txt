@@ -4,3 +4,7 @@ uvicorn
 brotli
 python-multipart
 aiofiles
+psycopg2-binary
+dotenv
+sqlmodel
+asyncpg
