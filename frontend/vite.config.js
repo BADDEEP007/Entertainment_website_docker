@@ -14,7 +14,7 @@ export default defineConfig({
    server: {
     proxy: {
       '/vicecity': {
-        target: 'http://localhost:3000',
+        target: 'http://backend:8000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/vicecity/, '')
       }

@@ -6,6 +6,7 @@ import './GamePlayPage.css'
 import { Vicecity } from '../Components/Games_files/ViceCity/Vicecity'
 
 export const GamePlayPage = () => {
+
     const { gameId } = useParams()
     const navigate = useNavigate()
 
@@ -41,6 +42,9 @@ export const GamePlayPage = () => {
             description: 'Open world action adventure'
         }
     }
+
+    console.log(import.meta.env.VITE_API_URL)
+    console.log("ENV OBJECT:", import.meta.env)
 
     const currentGame = games[gameId]
 
@@ -113,7 +117,7 @@ export const GamePlayPage = () => {
                     
                     <div className="game-screen">
                         {currentGame.component === "vicecity" ? (
-    <button onClick={() => window.open("http://localhost:3000", "_blank")}>
+    <button onClick={() => window.open("http://localhost:8000", "_blank")}>
       Launch Vice City
     </button>
   ) : (

@@ -3,6 +3,9 @@ import sys
 import asyncio
 import argparse
 import hashlib
+from db import init_db , create_table
+from contextlib import asynccontextmanager
+
 from typing import Optional
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import Response
@@ -11,6 +14,9 @@ import additions.saves as saves
 from additions.auth import BasicAuthMiddleware
 from additions.cache import proxy_and_cache, get_local_file
 from additions.packed import init_packed_archive, get_packed_file, is_initialized as packed_is_initialized
+from routes import users , saves ,scores
+
+
 
 # Add utils path for imports
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'utils'))
@@ -239,8 +245,9 @@ async def setup_unpacked(source: str) -> tuple:
             return None, None
     
     # Determine vcsky and vcbr paths
-    vcsky_path = "unpacked/d387c6f45d823194bc47671214496367/vcsky/"
-    vcbr_path = "unpacked/d387c6f45d823194bc47671214496367/vcbr"    
+    vcsky_path = None
+    vcbr_path = None
+    
     # Check for vcsky folder
     vcsky_candidate = os.path.join(unpacked_dir, "vcsky")
     if os.path.isdir(vcsky_candidate):
@@ -270,8 +277,15 @@ async def setup_unpacked(source: str) -> tuple:
     return vcsky_path, vcbr_path
 
 
-app = FastAPI()
+@asynccontextmanager
+async def lifesaver(app :FastAPI):
+    create_table()
+    yield
 
+app = FastAPI(docs_url=None)
+app.include_router(users.router)
+app.include_router(saves.router)
+app.include_router(scores.router)
 
 if args.login and args.password:
     app.add_middleware(BasicAuthMiddleware, username=args.login, password=args.password)
@@ -293,6 +307,8 @@ def request_to_url(request: Request, path: str, base_url: str):
     if query_string:
         url = f"{url}?{query_string}"
     return url
+
+
 
 
 # vcsky routes - packed archive, local, or proxy
@@ -354,9 +370,8 @@ async def read_index():
             content = f.read()
         
         # Inject custom_saves status
-        custom_saves_val = "1" #if args.custom_saves else "0"
+        custom_saves_val = "1" if args.custom_saves else "0"
         content = content.replace(
-
             'new URLSearchParams(window.location.search).get("custom_saves") === "1"',
             f'"{custom_saves_val}" === "1"'
         )
@@ -371,6 +386,7 @@ app.mount("/", StaticFiles(directory="dist"), name="root")
 
 
 async def init_server():
+    init_db()
     """Initialize server components that need async init."""
     global VCSKY_LOCAL_PATH, VCBR_LOCAL_PATH
     
