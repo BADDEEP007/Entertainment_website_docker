@@ -4,13 +4,13 @@ WORKDIR /app
 
 RUN corepack enable 
 
-COPY package.json  yarn.lock ./
+COPY package.json ./
 
-RUN yarn install
+RUN npm install 
 
 COPY . .
 
 EXPOSE 5173
 
-CMD ["yarn" ,"run","dev","--","--host"]
+CMD ["npm" ,"run","dev","--","--host"]
 

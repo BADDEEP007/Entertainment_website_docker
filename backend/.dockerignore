@@ -1,0 +1,6 @@
+unpacked/
+revcdos.bin
+__pycache__/
+*.pyc
+.git
+.gitignore

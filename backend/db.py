@@ -9,7 +9,6 @@ load_dotenv()
 
 
 Database_url = os.getenv("DATABASE_URL")
-print(Database_url)
 engine = create_engine(Database_url, echo = True)
 
 def init_db():
