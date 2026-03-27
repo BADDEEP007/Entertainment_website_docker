@@ -1,4 +1,4 @@
-import './NavBar.css'
+﻿import './NavBar.css'
 import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
@@ -13,6 +13,7 @@ export const Navbar = () => {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/#about">About</Link></li>
                     <li><Link to="/games">Games</Link></li>
+                    <li><Link to="/ai">AI Models</Link></li>
                     <li><Link to="/#faq">FAQ</Link></li>
                 </ul>
             </nav>

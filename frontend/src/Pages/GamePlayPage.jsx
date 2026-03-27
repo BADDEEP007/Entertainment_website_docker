@@ -117,7 +117,7 @@ export const GamePlayPage = () => {
                     
                     <div className="game-screen">
                         {currentGame.component === "vicecity" ? (
-    <button onClick={() => window.open("http://3.110.197.90:8000", "_blank")}>
+    <button onClick={() => window.open(import.meta.env.VITE_URL, "_blank")}>
       Launch Vice City
     </button>
   ) : (

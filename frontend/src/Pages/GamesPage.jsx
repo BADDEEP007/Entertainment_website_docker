@@ -98,7 +98,7 @@ export const GamesPage = () => {
                                     <button className="game-play-btn" onClick={() => {
                                         
                                     if (game.slug == 'vicecity'){
-                                        window.open("http://3.110.197.90:8000","_blank")
+                                        window.open(import.meta.env.VITE_URL,"_blank")
                                     }
                                     else{
                                         navigate(`/play/${game.slug}`)
