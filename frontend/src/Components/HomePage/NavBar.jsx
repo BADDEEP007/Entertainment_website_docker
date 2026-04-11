@@ -13,7 +13,7 @@ export const Navbar = () => {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/#about">About</Link></li>
                     <li><Link to="/games">Games</Link></li>
-                    <li><Link to="/ai">AI Models</Link></li>
+                    <li className="nav-item-disabled"><span className="nav-disabled-link">AI Models<span className="nav-coming-soon">Soon</span></span></li>
                     <li><Link to="/#faq">FAQ</Link></li>
                 </ul>
             </nav>

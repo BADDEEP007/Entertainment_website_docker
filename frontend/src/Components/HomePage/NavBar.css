@@ -162,3 +162,62 @@
         font-size: 0.8rem;
     }
 }
+/* ===== Disabled Nav Item ===== */
+.nav-item-disabled {
+    position: relative;
+}
+
+.nav-disabled-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.45;
+    cursor: not-allowed;
+    font-size: inherit;
+    color: inherit;
+    user-select: none;
+}
+
+.nav-coming-soon {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #a855f7;
+    background: rgba(168, 85, 247, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    border-radius: 4px;
+    padding: 1px 5px;
+    line-height: 1.4;
+}
+
+/* ===== Disabled Nav Item ===== */
+.nav-item-disabled {
+    position: relative;
+}
+
+.nav-disabled-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.45;
+    cursor: not-allowed;
+    font-size: inherit;
+    color: inherit;
+    user-select: none;
+}
+
+.nav-coming-soon {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #a855f7;
+    background: rgba(168, 85, 247, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    border-radius: 4px;
+    padding: 1px 5px;
+    line-height: 1.4;
+}
