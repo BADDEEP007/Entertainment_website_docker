@@ -29,7 +29,7 @@ export const FeaturedGames = () => {
                             <img src={game.image} alt={game.title} className='game-image' />
                             <div className="game-overlay">
                                 <button className='play-button'
-                                onClick={()=>{window.open(`${import.meta.env.VITE_URL}`,"_blank")}}>▶ PLAY NOW</button>
+                                onClick={()=>{window.open(`${"http://13.233.223.87:8000"}`,"_blank")}}>▶ PLAY NOW</button>
                             </div>
                         </div>
                         
