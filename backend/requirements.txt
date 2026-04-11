@@ -4,14 +4,9 @@ uvicorn
 brotli
 python-multipart
 aiofiles
-<<<<<<< HEAD
-psycopg2-binary
-dotenv
-sqlmodel
-asyncpg
-=======
+
 asyncpg
 sqlmodel
 dotenv
 psycopg2-binary
->>>>>>> 8e531c9 (final_change)
+
