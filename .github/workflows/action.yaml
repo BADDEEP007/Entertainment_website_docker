@@ -1,28 +1,28 @@
-name : Gaming_website
-on : 
-  push :
+name: Gaming_website
+on: 
+  push:
       branches:
               -main
-jobs :
+jobs:
    build_docker_image_frontend:
          run-on :ubuntu-latest
          steps:
-            - name : checkout code
-              uses : actions/checkout@v4
-            - name : Login to docker hub
-              uses :docker/login-action@v3
-              with :
-                  username : ${{secrets.DOCKER_USERNAME}}
-                  password :${{secrets.DOCKER_PASSWORD}}
+            - name: checkout code
+              uses: actions/checkout@v4
+            - name: Login to docker hub
+              uses:docker/login-action@v3
+              with:
+                  username: ${{secrets.DOCKER_USERNAME}}
+                  password:${{secrets.DOCKER_PASSWORD}}
 
-            - name : building frontend image
-              working-directory : ./frontend
-              run : |
+            - name: building frontend image
+              working-directory: ./frontend
+              run: |
 docker build -t ${{secrets.DOCKER_USERNAME}}/entertainment_frontend:latest .
 docker push  ${{ secrets.DOCKER_USERNAME}}/entertainment_frontend:latest
 
-            - name : building backend image
-              working-directory : ./backend
+            - name: building backend image
+              working-directory: ./backend
               run :|
               docker build -t ${{secrets.DOCKER_USERNAME}}/entertainment_fast_backend:latest .
               docker push ${{secrets.DOCKER_USERNAME}}/entertainment_fast_backend:latest
