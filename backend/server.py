@@ -14,7 +14,7 @@ import additions.saves as saves
 from additions.auth import BasicAuthMiddleware
 from additions.cache import proxy_and_cache, get_local_file
 from additions.packed import init_packed_archive, get_packed_file, is_initialized as packed_is_initialized
-from routes import users , saves ,scores
+# from routes import users , saves ,scores
 
 
 
@@ -282,9 +282,9 @@ async def lifesaver(app :FastAPI):
     yield
 
 app = FastAPI(docs_url=None)
-app.include_router(users.router)
-app.include_router(saves.router)
-app.include_router(scores.router)
+# app.include_router(users.router)
+# app.include_router(saves.router)
+# app.include_router(scores.router)
 
 if args.login and args.password:
     app.add_middleware(BasicAuthMiddleware, username=args.login, password=args.password)
