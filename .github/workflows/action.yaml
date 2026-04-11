@@ -17,10 +17,10 @@ jobs:
            - name: building frontend image
              working-directory: ./frontend
              run: |
-               docker build -t ${{secrets.DOCKER_USERNAME}}/entertainment_frontend:latest .
-               docker push  ${{ secrets.DOCKER_USERNAME}}/entertainment_frontend:latest
+                 docker build -t ${{secrets.DOCKER_USERNAME}}/entertainment_frontend:latest .
+                 docker push  ${{ secrets.DOCKER_USERNAME}}/entertainment_frontend:latest
 	   - name: building backend image
              working-directory: ./backend
              run : |
-               docker build -t ${{secrets.DOCKER_USERNAME}}/entertainment_fast_backend:latest .
-               docker push ${{secrets.DOCKER_USERNAME}}/entertainment_fast_backend:latest
+                 docker build -t ${{secrets.DOCKER_USERNAME}}/entertainment_fast_backend:latest .
+                 docker push ${{secrets.DOCKER_USERNAME}}/entertainment_fast_backend:latest
