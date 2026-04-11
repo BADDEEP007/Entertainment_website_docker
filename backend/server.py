@@ -3,7 +3,7 @@ import sys
 import asyncio
 import argparse
 import hashlib
-from db import init_db , create_table
+# from db import init_db , create_table
 from contextlib import asynccontextmanager
 
 from typing import Optional
@@ -279,7 +279,6 @@ async def setup_unpacked(source: str) -> tuple:
 
 @asynccontextmanager
 async def lifesaver(app :FastAPI):
-    create_table()
     yield
 
 app = FastAPI(docs_url=None)
@@ -386,7 +385,7 @@ app.mount("/", StaticFiles(directory="dist"), name="root")
 
 
 async def init_server():
-    init_db()
+   
     """Initialize server components that need async init."""
     global VCSKY_LOCAL_PATH, VCBR_LOCAL_PATH
     
