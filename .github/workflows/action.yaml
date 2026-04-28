@@ -35,3 +35,9 @@ jobs:
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/entertainment_agent_ai:latest -f Dockerfile .
           docker push ${{ secrets.DOCKER_USERNAME }}/entertainment_agent_ai:latest
+
+      - name: building express backend image
+        working-directory: ./express_backend
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/entertainment_express_backend:latest .
+          docker push ${{ secrets.DOCKER_USERNAME }}/entertainment_express_backend:latest

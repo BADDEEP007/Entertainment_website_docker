@@ -1,0 +1,46 @@
+# Node modules (will be installed in container)
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Environment files (should be provided at runtime)
+.env
+.env.local
+.env.*.local
+
+# Git files
+.git
+.gitignore
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Saved images (will be generated at runtime)
+Saved_Images/*
+!Saved_Images/.gitkeep
+
+# Saved panels
+saved_panels/*
+
+# Documentation
+*.md
+README.md
+
+# Test files
+test
+tests
+*.test.js
+*.spec.js
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.travis.yml

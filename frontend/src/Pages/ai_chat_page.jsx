@@ -124,8 +124,8 @@ export const AIChatPage = () => {
         appendMsg(sessionId, pendingMsg)
 
         try {
-            const response = await axios.post(`${API_URL}/generate-image`, { 
-                prompts: [chosenPrompt]
+            const response = await axios.post(`${API_URL}/generate-image-pinggy`, { 
+                prompt: chosenPrompt
             }, {
                 headers: { "Content-Type": "application/json" },
             })
