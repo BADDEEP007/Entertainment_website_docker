@@ -1,9 +1,10 @@
-const DIRECTOR_API_URL = import.meta.env.VITE_DIRECTOR_API_URL ?? "http://localhost:5000/get_prompt"
 
 /**
  * Calls the director enhancement API with the user's prompt.
  * Returns the director's upgraded version of the prompt.
+ * Uses Stable Diffusion XL model by default.
  */
+const DIRECTOR_API_URL = import.meta.env.VITE_DIRECTOR_API_URL
 export async function enhancePrompt(userPrompt) {
     const response = await fetch(DIRECTOR_API_URL, {
         method: "POST",
@@ -16,3 +17,10 @@ export async function enhancePrompt(userPrompt) {
     const data = await response.json()
     return data.detailed_prompt.trim() ?? ""
 }
+
+
+// export async function enchancePrompt(userPrompt){
+//     const model = new ChatGroq({
+//         apiKey: process.env.GROQ_API
+//     })
+// }

@@ -221,3 +221,22 @@
     padding: 1px 5px;
     line-height: 1.4;
 }
+
+/* ===== Movie Planner Nav Link ===== */
+.nav-movie-planner {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #c084fc !important;
+    font-weight: 500;
+    transition: color 0.2s, opacity 0.2s;
+}
+
+.nav-movie-planner:hover {
+    color: #e879f9 !important;
+    opacity: 1 !important;
+}
+
+.nav-movie-planner::after {
+    display: none !important;
+}

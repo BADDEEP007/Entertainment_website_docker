@@ -1,6 +1,19 @@
 ﻿import { useState, useRef, useEffect } from "react"
-import { useSearchParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { enhancePrompt } from "../hooks/usePromptEnhancer"
+import { DEFAULT_MODEL } from "../data/imageModels"
+import { 
+    Menu, 
+    X, 
+    Plus, 
+    Home, 
+    ImageIcon, 
+    Send, 
+    Zap,
+    Sparkles,
+    Download,
+    FileText
+} from "../components/Icons"
 import "./ai_chat_page.css"
 import axios from "axios"
 
@@ -13,13 +26,6 @@ const MODES = { IMAGE: "image" }
 const WELCOME = {
     [MODES.IMAGE]: "hola amigos , Namaste , Hello , Konichiwa , Ohayo , My Friend i am an Artist I Will Paint your idea into life but make sure the idea you describe should be of animated image art style cause u know i am Learning HeHe.",
 }
-
-const SUGGESTIONS = [
-    "A samurai standing in cherry blossom rain",
-    "Cyberpunk anime girl with neon lights",
-    "Cozy anime cafe interior at night",
-    "Dragon flying over a fantasy castle",
-]
 
 const STORAGE_KEY = "ai_chat_sessions_1"
 const ACTIVE_ID_KEY = "ai_chat_active_id_1"
@@ -59,7 +65,7 @@ function loadActiveId(sessions) {
 }
 
 export const AIChatPage = () => {
-    const [searchParams] = useSearchParams()
+    const navigate = useNavigate()
     const initialMode = MODES.IMAGE
 
     const [sessions, setSessions] = useState(() => loadSessions(initialMode))
@@ -113,21 +119,23 @@ export const AIChatPage = () => {
         setInput("")
     }
 
-    const generateWithPrompt = async (sessionId, chosenPrompt, currentMode) => {
+    const generateWithPrompt = async (sessionId, chosenPrompt) => {
         const pendingMsg = newMsg("assistant", `Generating your anime image: "${chosenPrompt}"`, "image-pending")
         appendMsg(sessionId, pendingMsg)
 
         try {
-            const data  = await axios.post(`${API_URL}/generate`, { prompts: [chosenPrompt] }, {
+            const response = await axios.post(`${API_URL}/generate-image`, { 
+                prompts: [chosenPrompt]
+            }, {
                 headers: { "Content-Type": "application/json" },
             })
-            const urls = data.data.links
-            console.log(urls)
+            const imageUrl = response.data.url
+            console.log(imageUrl)
             updateSession(sessionId, s => ({
                 ...s,
                 messages: s.messages.map(m =>
                     m.id === pendingMsg.id
-                        ? { ...m, type: "image-result", meta: { ...m.meta, urls, prompt: chosenPrompt } }
+                        ? { ...m, type: "image-result", meta: { ...m.meta, urls: imageUrl, prompt: chosenPrompt } }
                         : m
                 ),
             }))
@@ -163,7 +171,7 @@ export const AIChatPage = () => {
             ? choiceMsg.meta.userPrompt
             : choiceMsg.meta.directorPrompt
 
-        generateWithPrompt(sessionId, chosenPrompt, session.mode)
+        generateWithPrompt(sessionId, chosenPrompt)
     }
 
     // Goes through the director first, then generates
@@ -172,7 +180,6 @@ export const AIChatPage = () => {
         if (!text || loading) return
 
         const sessionId = activeId
-        const currentMode = activeSession.mode
 
         const userMsg = newMsg("user", text)
         updateSession(sessionId, s => ({
@@ -184,7 +191,7 @@ export const AIChatPage = () => {
         setLoading(true)
 
         try {
-            const directorPrompt = await enhancePrompt(text, currentMode)
+            const directorPrompt = await enhancePrompt(text)
             const choiceMsg = newMsg("assistant", "", "choice", {
                 userPrompt: text,
                 directorPrompt,
@@ -193,7 +200,7 @@ export const AIChatPage = () => {
             appendMsg(sessionId, choiceMsg)
         } catch (err) {
             appendMsg(sessionId, newMsg("assistant", `Could not reach the director (${err.message}). Generating with your prompt.`))
-            generateWithPrompt(sessionId, text, currentMode)
+            generateWithPrompt(sessionId, text)
         }
 
         setLoading(false)
@@ -205,7 +212,6 @@ export const AIChatPage = () => {
         if (!text || loading) return
 
         const sessionId = activeId
-        const currentMode = activeSession.mode
 
         const userMsg = newMsg("user", text)
         updateSession(sessionId, s => ({
@@ -214,7 +220,7 @@ export const AIChatPage = () => {
             messages: [...s.messages, userMsg],
         }))
         setInput("")
-        generateWithPrompt(sessionId, text, currentMode)
+        generateWithPrompt(sessionId, text)
     }
 
     const handleKeyDown = (e) => {
@@ -231,18 +237,24 @@ export const AIChatPage = () => {
         a.click()
     }
 
-    const showSuggestions = activeSession?.messages.length <= 1
+
 
     return (
         <div className="chat-layout">
             {/* Sidebar */}
             <aside className={`chat-sidebar ${sidebarOpen ? "open" : "closed"}`}>
                 <div className="sidebar-header">
-                    <span className="sidebar-logo">&#10022; AnimeAI</span>
-                    <button className="icon-btn" onClick={() => setSidebarOpen(false)}>&#x2715;</button>
+                    <span className="sidebar-logo">
+                        <Sparkles size={20} className="logo-icon" />
+                        AnimeAI
+                    </span>
+                    <button className="icon-btn" onClick={() => setSidebarOpen(false)} aria-label="Close sidebar">
+                        <X size={20} />
+                    </button>
                 </div>
                 <button className="new-chat-btn" onClick={handleNewChat}>
-                    <span>&#xFF0B;</span> New Chat
+                    <Plus size={18} />
+                    <span>New Chat</span>
                 </button>
                 <div className="sidebar-section-label">Recent</div>
                 <ul className="chat-history-list">
@@ -263,10 +275,27 @@ export const AIChatPage = () => {
             <div className="chat-main">
                 <header className="chat-topbar">
                     {!sidebarOpen && (
-                        <button className="icon-btn" onClick={() => setSidebarOpen(true)}>&#9776;</button>
+                        <button className="icon-btn" onClick={() => setSidebarOpen(true)} aria-label="Open sidebar">
+                            <Menu size={20} />
+                        </button>
                     )}
+                    <button 
+                        className="home-btn" 
+                        onClick={() => navigate('/')}
+                        title="Go to Home"
+                    >
+                        <Home size={18} />
+                        <span>Home</span>
+                    </button>
                     <div className="mode-switcher">
-                        <span className="mode-btn active">&#128444; Image</span>
+                        <span className="mode-btn active">
+                            <ImageIcon size={18} />
+                            <span>Image Generation</span>
+                        </span>
+                    </div>
+                    <div className="model-badge">
+                        <Sparkles size={16} />
+                        <span>{DEFAULT_MODEL.shortName}</span>
                     </div>
                 </header>
 
@@ -277,42 +306,56 @@ export const AIChatPage = () => {
 
                             {msg.type === "choice" ? (
                                 <div className="choice-card">
-                                    <p className="choice-heading">&#127916; The Director has upgraded your prompt. Which version do you prefer?</p>
+                                    <p className="choice-heading">
+                                        <Sparkles size={18} className="inline-icon" />
+                                        The Director has upgraded your prompt. Which version do you prefer?
+                                    </p>
                                     <div className="choice-options">
                                         <div className={`choice-option ${msg.meta.chosen === "mine" ? "chosen" : ""}`}>
-                                            <div className="choice-label">&#128100; Your Prompt</div>
+                                            <div className="choice-label">Your Prompt</div>
                                             <p className="choice-text">{msg.meta.userPrompt}</p>
                                             {!msg.meta.chosen && (
                                                 <button className="choice-btn mine" onClick={() => handleChoice(msg.id, "mine", activeId)}>
                                                     Use Mine
                                                 </button>
                                             )}
-                                            {msg.meta.chosen === "mine" && <span className="chosen-badge">&#10003; Selected</span>}
+                                            {msg.meta.chosen === "mine" && <span className="chosen-badge">Selected</span>}
                                         </div>
                                         <div className={`choice-option director ${msg.meta.chosen === "director" ? "chosen" : ""}`}>
-                                            <div className="choice-label">&#127775; Director&#39;s Upgrade</div>
+                                            <div className="choice-label">
+                                                <Sparkles size={14} className="inline-icon" />
+                                                Director's Upgrade
+                                            </div>
                                             <p className="choice-text">{msg.meta.directorPrompt}</p>
                                             {!msg.meta.chosen && (
                                                 <button className="choice-btn director" onClick={() => handleChoice(msg.id, "director", activeId)}>
-                                                    Use Director&#39;s
+                                                    Use Director's
                                                 </button>
                                             )}
-                                            {msg.meta.chosen === "director" && <span className="chosen-badge">&#10003; Selected</span>}
+                                            {msg.meta.chosen === "director" && <span className="chosen-badge">Selected</span>}
                                         </div>
                                     </div>
                                     <button
                                         className="view-full-prompt-btn"
                                         onClick={() => setViewingPrompt({ userPrompt: msg.meta.userPrompt, directorPrompt: msg.meta.directorPrompt })}
                                     >
-                                        &#128196; View Full Director Prompt
+                                        <FileText size={16} />
+                                        View Full Director Prompt
                                     </button>
                                 </div>
                             ) : msg.type === "image-result" ? (
                                 <div className="message-bubble image-result">
                                     <img src={msg.meta.urls} alt={msg.meta.prompt} className="generated-image" />
-                                    <button className="download-btn" onClick={() => handleDownload(msg.meta.urls, msg.meta.prompt)}>
-                                        &#8595; Download
-                                    </button>
+                                    <div className="image-result-info">
+                                        <span className="image-model-badge">
+                                            <Sparkles size={14} />
+                                            {DEFAULT_MODEL.shortName}
+                                        </span>
+                                        <button className="download-btn" onClick={() => handleDownload(msg.meta.urls, msg.meta.prompt)}>
+                                            <Download size={16} />
+                                            Download
+                                        </button>
+                                    </div>
                                 </div>
                             ) : msg.type === "image-pending" ? (
                                 <div className="message-bubble image-generating">
@@ -321,7 +364,10 @@ export const AIChatPage = () => {
                                         <div className="img-gen-bars">
                                             <span /><span /><span /><span /><span />
                                         </div>
-                                        <p className="img-gen-label">&#10024; Painting your vision...</p>
+                                        <p className="img-gen-label">
+                                            <Sparkles size={16} className="inline-icon" />
+                                            Painting your vision...
+                                        </p>
                                     </div>
                                 </div>
                             ) : (
@@ -340,14 +386,6 @@ export const AIChatPage = () => {
                             <div className="message-bubble">
                                 <div className="typing-indicator"><span /><span /><span /></div>
                             </div>
-                        </div>
-                    )}
-
-                    {showSuggestions && (
-                        <div className="suggestions-grid">
-                            {SUGGESTIONS.map((s, i) => (
-                                <button key={i} className="suggestion-chip" onClick={() => setInput(s)}>{s}</button>
-                            ))}
                         </div>
                     )}
 
@@ -370,19 +408,29 @@ export const AIChatPage = () => {
                             onClick={handleDirectGenerate}
                             disabled={!input.trim() || loading}
                             title="Generate directly (skip director)"
+                            aria-label="Generate directly"
                         >
-                            &#9889;
+                            <Zap size={18} />
                         </button>
                         <button
                             className={`send-btn ${input.trim() && !loading ? "ready" : ""}`}
                             onClick={handleSend}
                             disabled={!input.trim() || loading}
                             title="Send to director first"
+                            aria-label="Send message"
                         >
-                            &#8593;
+                            <Send size={18} />
                         </button>
                     </div>
-                    <p className="input-hint">&#8593; with director &middot; &#9889; direct generate &middot; Shift+Enter for new line</p>
+                    <p className="input-hint">
+                        <Send size={12} className="hint-icon" />
+                        with director
+                        <span className="hint-separator">·</span>
+                        <Zap size={12} className="hint-icon" />
+                        direct generate
+                        <span className="hint-separator">·</span>
+                        Shift+Enter for new line
+                    </p>
                 </div>
             </div>
 
@@ -391,15 +439,23 @@ export const AIChatPage = () => {
                 <div className="prompt-modal-overlay" onClick={() => setViewingPrompt(null)}>
                     <div className="prompt-modal" onClick={e => e.stopPropagation()}>
                         <div className="prompt-modal-header">
-                            <span>&#127775; Full Director Prompt</span>
-                            <button className="icon-btn" onClick={() => setViewingPrompt(null)}>&#x2715;</button>
+                            <span>
+                                <Sparkles size={18} className="inline-icon" />
+                                Full Director Prompt
+                            </span>
+                            <button className="icon-btn" onClick={() => setViewingPrompt(null)} aria-label="Close modal">
+                                <X size={20} />
+                            </button>
                         </div>
                         <div className="prompt-modal-section">
-                            <div className="prompt-modal-label">&#128100; Your Original Prompt</div>
+                            <div className="prompt-modal-label">Your Original Prompt</div>
                             <pre className="prompt-modal-text">{viewingPrompt.userPrompt}</pre>
                         </div>
                         <div className="prompt-modal-section">
-                            <div className="prompt-modal-label">&#127775; Director&#39;s Full Prompt</div>
+                            <div className="prompt-modal-label">
+                                <Sparkles size={14} className="inline-icon" />
+                                Director's Full Prompt
+                            </div>
                             <pre className="prompt-modal-text">{viewingPrompt.directorPrompt}</pre>
                         </div>
                     </div>
