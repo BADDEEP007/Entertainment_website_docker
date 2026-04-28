@@ -18,7 +18,7 @@ dotenv.config();
 const app = express();
 app.use(morgan('dev'));
 app.use(cors({
-  origin: "http://localhost:5173"
+  origin: ["http://localhost:5173","http://13.127.44.168:5173"]
 }));
 
 // Make the 'Saved_Images' folder accessible to the browser
