@@ -249,3 +249,78 @@
     line-height: 1.5;
     max-width: 280px;
 }
+
+/* ===== Cross-feature Link Banner (AI Page) ===== */
+.ai-crosslink-banner {
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.08) 0%, rgba(138, 43, 226, 0.12) 100%);
+    border-top: 1px solid rgba(255, 107, 157, 0.2);
+    border-bottom: 1px solid rgba(255, 107, 157, 0.2);
+    padding: 40px 20px;
+    margin-bottom: 0;
+}
+
+.ai-crosslink-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.ai-crosslink-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+}
+
+.ai-crosslink-content > div {
+    flex: 1;
+    min-width: 200px;
+}
+
+.ai-crosslink-content h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 6px 0;
+}
+
+.ai-crosslink-content p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.ai-crosslink-btn {
+    padding: 12px 28px;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.3), rgba(138, 43, 226, 0.4));
+    border: 1px solid rgba(255, 107, 157, 0.4);
+    border-radius: 50px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.ai-crosslink-btn:hover {
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.5), rgba(138, 43, 226, 0.6));
+    border-color: rgba(255, 107, 157, 0.7);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.3);
+}
+
+@media (max-width: 768px) {
+    .ai-crosslink-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .ai-crosslink-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

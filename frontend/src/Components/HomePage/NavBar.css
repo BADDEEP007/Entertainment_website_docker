@@ -83,6 +83,14 @@
     width: 100%;
 }
 
+.navbar-option li a.nav-active {
+    color: #ffffff;
+}
+
+.navbar-option li a.nav-active::after {
+    width: 100%;
+}
+
 .nav-cta-button {
     padding: 10px 28px;
     font-size: 0.9rem;

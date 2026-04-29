@@ -2,6 +2,7 @@ import { Navbar } from "../Components/HomePage/NavBar"
 import { Herosection } from "../Components/HomePage/HeroSection"
 import "./Homepage.css"
 import { About } from "../Components/About/AboutSection"
+import { PlatformModules } from "../Components/HomePage/PlatformModules"
 import { FeaturedGames } from "../Components/Games_files/FeaturedGames"
 import { FAQ } from "../Components/FAQ/FAQ"
 import { Footer } from "../Components/Footer/Footer"
@@ -19,6 +20,9 @@ export const HomePage =() =>{
         </div>
         <div id="about">
             <About/>
+        </div>
+        <div id="modules">
+            <PlatformModules/>
         </div>
         <div id="games">
             <FeaturedGames/>

@@ -1,25 +1,59 @@
 import './HeroSection.css'
+import { useNavigate } from 'react-router-dom'
+
+const MOVIE_PLANNER_URL = import.meta.env.VITE_MOVIE_PLANNER_URL ?? "http://127.0.0.1:5000/new"
 
 export const Herosection = () => {
+    const navigate = useNavigate()
+
     return (
-        <>
         <section className="herosection">
             <div className="hero-content">
                 <div className="hero-badge">
                     <span className="badge-dot"></span>
-                    <span className="badge-text">WebAssembly Powered</span>
+                    <span className="badge-text">AI-Powered Entertainment</span>
                 </div>
-                
+
                 <h1 className="hero-title">
-                    Browser-Based
-                    <span className="hero-title-highlight"> Game Hub</span>
+                    AI-Powered
+                    <span className="hero-title-highlight"> Entertainment</span>
+                    <br />Platform
                 </h1>
-                
+
                 <p className="hero-description">
-                    Play games instantly in your browser with near-native performance. 
-                    No downloads, no installations - just pure WebAssembly-powered gaming. 
-                    Built with React, Express, and Docker for a seamless experience.
+                    A unified platform combining gaming, AI-generated creativity,
+                    and intelligent recommendations — all in one place.
                 </p>
+
+                {/* Three feature cards */}
+                <div className="hero-feature-cards">
+                    <div className="hero-feature-card" onClick={() => navigate('/games')}>
+                        <div className="hfc-icon">🎮</div>
+                        <div className="hfc-body">
+                            <h3>Gaming</h3>
+                            <p>Play classic browser games instantly</p>
+                        </div>
+                        <span className="hfc-arrow">→</span>
+                    </div>
+
+                    <div className="hero-feature-card" onClick={() => navigate('/ai')}>
+                        <div className="hfc-icon">🎨</div>
+                        <div className="hfc-body">
+                            <h3>Create</h3>
+                            <p>Generate anime art with AI</p>
+                        </div>
+                        <span className="hfc-arrow">→</span>
+                    </div>
+
+                    <div className="hero-feature-card" onClick={() => window.open(MOVIE_PLANNER_URL, '_blank')}>
+                        <div className="hfc-icon">🤖</div>
+                        <div className="hfc-body">
+                            <h3>Smart Recommendations</h3>
+                            <p>Mood-based movie picks via AI</p>
+                        </div>
+                        <span className="hfc-arrow">→</span>
+                    </div>
+                </div>
 
                 <div className="hero-stats">
                     <div className="stat-item">
@@ -28,36 +62,13 @@ export const Herosection = () => {
                     </div>
                     <div className="stat-divider"></div>
                     <div className="stat-item">
-                        <span className="stat-number">0ms</span>
-                        <span className="stat-label">Load Time</span>
+                        <span className="stat-number">AI</span>
+                        <span className="stat-label">Art Studio</span>
                     </div>
                     <div className="stat-divider"></div>
                     <div className="stat-item">
-                        <span className="stat-number">100%</span>
-                        <span className="stat-label">Browser</span>
-                    </div>
-                </div>
-
-                <div className="hero-actions">
-                    <a href="/games" className="btn-primary">
-                        <span>Explore Games</span>
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                    </a>
-                    <a href="#about" className="btn-secondary">
-                        <span>Learn More</span>
-                    </a>
-                </div>
-
-                <div className="hero-tech-stack">
-                    <span className="tech-label">Built with:</span>
-                    <div className="tech-items">
-                        <span className="tech-item">React</span>
-                        <span className="tech-item">Express</span>
-                        <span className="tech-item">Docker</span>
-                        <span className="tech-item">WebAssembly</span>
-                        <span className="tech-item">Nginx</span>
+                        <span className="stat-number">∞</span>
+                        <span className="stat-label">Recommendations</span>
                     </div>
                 </div>
             </div>
@@ -69,7 +80,7 @@ export const Herosection = () => {
                     <div className="grid-line grid-line-3"></div>
                     <div className="grid-line grid-line-4"></div>
                     <div className="grid-line grid-line-5"></div>
-                    
+
                     <div className="floating-cube cube-1">
                         <div className="cube-face front"></div>
                         <div className="cube-face back"></div>
@@ -78,7 +89,7 @@ export const Herosection = () => {
                         <div className="cube-face top"></div>
                         <div className="cube-face bottom"></div>
                     </div>
-                    
+
                     <div className="floating-cube cube-2">
                         <div className="cube-face front"></div>
                         <div className="cube-face back"></div>
@@ -87,7 +98,7 @@ export const Herosection = () => {
                         <div className="cube-face top"></div>
                         <div className="cube-face bottom"></div>
                     </div>
-                    
+
                     <div className="floating-cube cube-3">
                         <div className="cube-face front"></div>
                         <div className="cube-face back"></div>
@@ -99,8 +110,6 @@ export const Herosection = () => {
                 </div>
                 <div className="visual-glow"></div>
             </div>
-
         </section>
-        </>
     )
 }

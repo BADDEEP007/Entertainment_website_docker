@@ -568,3 +568,72 @@
         height: 40px;
     }
 }
+
+/* ===== Hero Feature Cards ===== */
+.hero-feature-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.hero-feature-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+.hero-feature-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateX(6px);
+}
+
+.hfc-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+}
+
+.hfc-body {
+    flex: 1;
+}
+
+.hfc-body h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 4px 0;
+    font-family: 'Orbitron', custom2, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.hfc-body p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.hfc-arrow {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.1rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.hero-feature-card:hover .hfc-arrow {
+    transform: translateX(4px);
+    color: rgba(255, 255, 255, 0.8);
+}

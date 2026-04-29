@@ -24,20 +24,20 @@ jobs:
           docker build -t ${{ secrets.DOCKER_USERNAME }}/entertainment_frontend:latest .
           docker push ${{ secrets.DOCKER_USERNAME }}/entertainment_frontend:latest
 
-      - name: building backend image
-        working-directory: ./backend
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/entertainment_fast_backend:latest .
-          docker push ${{ secrets.DOCKER_USERNAME }}/entertainment_fast_backend:latest
+      # - name: building backend image
+      #   working-directory: ./backend
+      #   run: |
+      #     docker build -t ${{ secrets.DOCKER_USERNAME }}/entertainment_fast_backend:latest .
+      #     docker push ${{ secrets.DOCKER_USERNAME }}/entertainment_fast_backend:latest
 
-      - name: building agent ai image
-        working-directory: ./agent_ai/Entertainment-app
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/entertainment_agent_ai:latest -f Dockerfile .
-          docker push ${{ secrets.DOCKER_USERNAME }}/entertainment_agent_ai:latest
+      # - name: building agent ai image
+      #   working-directory: ./agent_ai/Entertainment-app
+      #   run: |
+      #     docker build -t ${{ secrets.DOCKER_USERNAME }}/entertainment_agent_ai:latest -f Dockerfile .
+      #     docker push ${{ secrets.DOCKER_USERNAME }}/entertainment_agent_ai:latest
 
-      - name: building express backend image
-        working-directory: ./express_backend
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/entertainment_express_backend:latest .
-          docker push ${{ secrets.DOCKER_USERNAME }}/entertainment_express_backend:latest
+      # - name: building express backend image
+      #   working-directory: ./express_backend
+      #   run: |
+      #     docker build -t ${{ secrets.DOCKER_USERNAME }}/entertainment_express_backend:latest .
+      #     docker push ${{ secrets.DOCKER_USERNAME }}/entertainment_express_backend:latest

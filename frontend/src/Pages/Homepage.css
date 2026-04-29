@@ -1,6 +1,6 @@
 .Background_images{
     width: 100%;
-    max-width: 1632px;
+    /* max-width: 1632px; */
     min-height: 100vh;
     background-repeat: no-repeat;
     background-image: url("../assets/background.svg");
@@ -57,7 +57,7 @@
 
 .About_background{
     width: 100%;
-    max-width: 1632px;
+    /* max-width: 1632px; */
     min-height: 1023px;
     background-image: url(../assets/back3.svg);
     background-repeat: no-repeat;

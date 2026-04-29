@@ -4,6 +4,9 @@ import { Footer } from "../Components/Footer/Footer"
 import './GamesPage.css'
 import SplashCursor from "../Components/React-bits/splash_cur"
 import { useNavigate } from "react-router-dom"
+
+const MOVIE_PLANNER_URL = import.meta.env.VITE_MOVIE_PLANNER_URL ?? "http://127.0.0.1:5000/new"
+
 export const GamesPage = () => {
     const navigate = useNavigate();
     const allGames = [
@@ -83,8 +86,8 @@ export const GamesPage = () => {
             <div className="games-page-header">
                 <Navbar />
                 <div className="games-hero">
-                    <h1 className="games-hero-title">Game Library</h1>
-                    <p className="games-hero-subtitle">Discover your next favorite browser game</p>
+                    <h1 className="games-hero-title">Play Games Based on Your Mood</h1>
+                    <p className="games-hero-subtitle">Pick a vibe and dive in — action, puzzle, or classic arcade</p>
                 </div>
             </div>
 
@@ -137,7 +140,21 @@ export const GamesPage = () => {
                     ))}
                 </div>
             </section>
-            
+
+            {/* Cross-feature link to Recommendations */}
+            <div className="games-crosslink-banner">
+                <div className="crosslink-content">
+                    <span className="crosslink-icon">🤖</span>
+                    <div>
+                        <h3>Not sure what to play?</h3>
+                        <p>Let AI recommend a movie that matches your mood instead</p>
+                    </div>
+                    <a href={MOVIE_PLANNER_URL} target="_blank" rel="noopener noreferrer" className="crosslink-btn">
+                        Get Recommendations →
+                    </a>
+                </div>
+            </div>
+
             <FAQ />
             <Footer />
         </>

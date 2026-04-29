@@ -19,6 +19,8 @@ import axios from "axios"
 
 const API_URL = import.meta.env.VITE_API_URL 
 
+const MOVIE_PLANNER_URL = import.meta.env.VITE_MOVIE_PLANNER_URL ?? "http://127.0.0.1:5000/new"
+
 
 
 const MODES = { IMAGE: "image" }
@@ -431,6 +433,17 @@ export const AIChatPage = () => {
                         <span className="hint-separator">·</span>
                         Shift+Enter for new line
                     </p>
+                    <div className="chat-crosslink-bar">
+                        <span>🤖 Want a movie with a similar vibe?</span>
+                        <a
+                            href={MOVIE_PLANNER_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="chat-crosslink-btn"
+                        >
+                            Get Recommendations →
+                        </a>
+                    </div>
                 </div>
             </div>
 
