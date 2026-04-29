@@ -1,6 +1,6 @@
 .games-page-header {
     width: 100%;
-    max-width: 1632px;
+    /* max-width: 1632px; */
     min-height: 500px;
     background-image: url("../assets/background.svg");
     background-size: cover;
@@ -51,7 +51,7 @@
 }
 
 .all-games-section {
-    max-width: 1632px;
+    /* max-width: 1632px; */
     width: 100%;
     min-height: 800px;
     padding: 80px 60px;
